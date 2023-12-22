@@ -21,7 +21,7 @@ function calculate() {
     let score7 = parseFloat(selectedMap.getAttribute('data-score7'));
     let score8 = parseFloat(selectedMap.getAttribute('data-score8'));
 
-    // 出現モンスター数ごとの必要最低睡眠スコア
+    // 出現ポケモン数ごとの必要最低睡眠スコア
     let monsterScores = {
         4: (score4 / energy),
         5: (score5 / energy),
@@ -38,14 +38,13 @@ function calculate() {
         let requiredScore = monsterScores[count];
         sleepScores[count] = requiredScore;  // 必要最低睡眠スコアを保存
 
-        // 計算式を変更
         let baseTime = 8 * 60 + 30; // 基準時間 (8時間30分) を分単位で表現
-        let requiredTime = requiredScore * baseTime / 100;
+        let requiredTime = Math.ceil(requiredScore * baseTime / 100); // 切り上げ
 
         // 結果を保存
         sleepTimes[count] = {
             hour: Math.floor(requiredTime / 60),
-            minute: Math.round(requiredTime % 60) // 四捨五入
+            minute: requiredTime % 60
         };
     }
 
@@ -73,7 +72,7 @@ function displayResults(sleepScores, sleepTimes) {
     for (let count in sleepScores) {
         // 必要最低睡眠スコアを表示
         let scoreResult = document.createElement("p");
-        scoreResult.textContent = "必要最低睡眠スコア(" + count + "体): " + sleepScores[count];
+        scoreResult.textContent = "必要最低睡眠スコア(" + count + "体): " + Math.ceil(sleepScores[count]);
         scoreResultElement.appendChild(scoreResult);
 
         // 必要最低睡眠時間を表示
