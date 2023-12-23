@@ -3,7 +3,6 @@ body {
 
 }
 
-
 main {
   text-align: center;
 }
@@ -27,13 +26,6 @@ main {
   text-align: center;
   margin: 0; /* 余白を除去 */
 }
-
-.map.selected {
-  background-color: #4CAF50;
-  color: white;
-}
-
-
 
 
 #ep {
@@ -132,6 +124,11 @@ button:hover {
   transition: background-color 0.3s ease;
 }
 
+#map5.selected {
+  background-color: #4CAF50;
+  color: white;
+}
+
 #map5:hover {
   background-color: #4CAF50;
 }
@@ -139,6 +136,11 @@ button:hover {
 #map6 {
   background-image:none
   transition: background-color 0.3s ease;
+}
+
+#map6.selected {
+  background-color: #4CAF50;
+  color: white;
 }
 
 #map6:hover {
