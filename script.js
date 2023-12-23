@@ -1,3 +1,6 @@
+// script.js
+let selectedMultiplier = 1; // 選択された倍率の初期値
+
 function calculate() {
     // エナジーポイントの入力値を取得
     let ep = document.getElementById("ep");
@@ -21,13 +24,13 @@ function calculate() {
     let score7 = parseFloat(selectedMap.getAttribute('data-score7'));
     let score8 = parseFloat(selectedMap.getAttribute('data-score8'));
 
-    // 出現ポケモン数ごとの必要最低睡眠スコア
+    // 出現モンスター数ごとの必要最低睡眠スコア
     let monsterScores = {
-        4: (score4 / energy),
-        5: (score5 / energy),
-        6: (score6 / energy),
-        7: (score7 / energy),
-        8: (score8 / energy)
+        4: (score4 / energy) / selectedMultiplier,
+        5: (score5 / energy) / selectedMultiplier,
+        6: (score6 / energy) / selectedMultiplier,
+        7: (score7 / energy) / selectedMultiplier,
+        8: (score8 / energy) / selectedMultiplier
     };
 
     // エナジーポイントに対応する睡眠時間を計算
@@ -38,6 +41,7 @@ function calculate() {
         let requiredScore = monsterScores[count];
         sleepScores[count] = requiredScore;  // 必要最低睡眠スコアを保存
 
+        // 計算式を変更
         let baseTime = 8 * 60 + 30; // 基準時間 (8時間30分) を分単位で表現
         let requiredTime = Math.ceil(requiredScore * baseTime / 100); // 切り上げ
 
@@ -62,6 +66,24 @@ document.querySelectorAll('.map').forEach(function(map) {
     });
 });
 
+// 倍率ボタンがクリックされたときの処理
+document.querySelectorAll('.multiplier').forEach(function(button) {
+    button.addEventListener('click', function() {
+        // 選択された倍率を更新
+        if (selectedMultiplier === parseFloat(button.textContent)) {
+            selectedMultiplier = 1; // もう一度選択された場合は倍率を解除
+            button.style.backgroundColor = "#808080"; // デフォルトの色に戻す
+        } else {
+            selectedMultiplier = parseFloat(button.textContent);
+            // 倍率ボタンのスタイルを更新
+            document.querySelectorAll('.multiplier').forEach(function(otherButton) {
+                otherButton.style.backgroundColor = "#808080"; // デフォルトの色に戻す
+            });
+            button.style.backgroundColor = "#07c900"; // 選択された倍率の色に変更
+        }
+    });
+});
+
 function displayResults(sleepScores, sleepTimes) {
     let scoreResultElement = document.getElementById("sleepScore");
     let sleepHourElement = document.getElementById("sleephour");
@@ -70,7 +92,7 @@ function displayResults(sleepScores, sleepTimes) {
     sleepHourElement.innerHTML = "";
 
     for (let count in sleepScores) {
-        // 必要最低睡眠スコアを表示
+        // 必要最低睡眠スコアを表示 (1の位まで)
         let scoreResult = document.createElement("p");
         scoreResult.textContent = "必要最低睡眠スコア(" + count + "体): " + Math.ceil(sleepScores[count]);
         scoreResultElement.appendChild(scoreResult);
