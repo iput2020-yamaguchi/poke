@@ -17,6 +17,7 @@ main {
   padding: 10px;
   border: 1px solid #035202;
   border-radius: 5px;
+  background-size: cover;
 }
 
 .map p {
@@ -28,6 +29,9 @@ main {
   background-color: #4CAF50;
   color: white;
 }
+
+
+
 
 #ep {
   margin-right: 10px;
@@ -43,18 +47,62 @@ button {
 }
 
 button.multiplier {
-  background-color: grey; /* 変更前のデフォルトの色 */
+  background-color: grey;
   color: white;
   padding: 10px;
   cursor: pointer;
 }
 
 button.multiplier:hover {
-  background-color: #333; /* 変更前のホバー時の色 */
+  background-color: #333;
 }
 
 #score,
 #hour {
   margin-top: 20px;
   font-weight: bold;
+}
+
+#map1 {
+  background-image: url('wakakusa2.jpg');
+}
+
+#map1.selected {
+  background-image: url('wakakusa3.jpg');
+  color: white;
+}
+
+#map2 {
+  background-image: url('siann2.jpg');
+}
+
+#map2.selected {
+  background-image: url('siann3.jpg');
+  color: white;
+}
+
+#map3 {
+  background-image: url('to-pu2.jpg');
+}
+
+#map3.selected {
+  background-image: url('to-pu3.jpg');
+  color: white;
+}
+
+#map4 {
+  background-image: url('unohana2.jpg');
+}
+
+#map4.selected {
+  background-image: url('unohana3.jpg');
+  color: white;
+}
+
+#map5 {
+  background-image:none
+}
+
+#map6 {
+  background-image:none
 }
