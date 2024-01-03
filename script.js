@@ -43,7 +43,7 @@ function calculate() {
 
         // 計算式を変更
         let baseTime = 8 * 60 + 30; // 基準時間 (8時間30分) を分単位で表現
-        let requiredTime = Math.ceil(requiredScore * baseTime / 100); // 切り上げ
+        let requiredTime = Math.round(requiredScore * baseTime / 100); // 四捨五入
 
         // 結果を保存
         sleepTimes[count] = {
@@ -94,7 +94,7 @@ function displayResults(sleepScores, sleepTimes) {
     for (let count in sleepScores) {
         // 必要最低睡眠スコアを表示 (1の位まで)
         let scoreResult = document.createElement("p");
-        scoreResult.textContent = "必要最低睡眠スコア(" + count + "体): " + Math.ceil(sleepScores[count]);
+        scoreResult.textContent = "必要最低睡眠スコア(" + count + "体): " + Math.round(sleepScores[count]);
         scoreResultElement.appendChild(scoreResult);
 
         // 必要最低睡眠時間を表示
