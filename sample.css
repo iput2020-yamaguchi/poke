@@ -120,17 +120,17 @@ button:hover {
 }
 
 #map5 {
-  background-image:none
-  transition: background-color 0.3s ease;
+  background-image: url('rapisu2.jpg');
+  transition: background-image 0.3s ease;
 }
 
 #map5.selected {
-  background-color: #4CAF50;
+  background-image: url('rapisu3.jpg');
   color: white;
 }
 
 #map5:hover {
-  background-color: #4CAF50;
+  background-image: url('rapisu3.jpg')
 }
 
 #map6 {
