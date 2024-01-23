@@ -23,6 +23,7 @@ function calculate() {
     let score6 = parseFloat(selectedMap.getAttribute('data-score6'));
     let score7 = parseFloat(selectedMap.getAttribute('data-score7'));
     let score8 = parseFloat(selectedMap.getAttribute('data-score8'));
+    let score9 = parseFloat(selectedMap.getAttribute('data-score9'));
 
     // 出現モンスター数ごとの必要最低睡眠スコア
     let monsterScores = {
@@ -30,7 +31,8 @@ function calculate() {
         5: (score5 / energy) / selectedMultiplier,
         6: (score6 / energy) / selectedMultiplier,
         7: (score7 / energy) / selectedMultiplier,
-        8: (score8 / energy) / selectedMultiplier
+        8: (score8 / energy) / selectedMultiplier,
+        9: (score9 / energy) / selectedMultiplier
     };
 
     // エナジーポイントに対応する睡眠時間を計算
@@ -41,9 +43,8 @@ function calculate() {
         let requiredScore = monsterScores[count];
         sleepScores[count] = requiredScore;  // 必要最低睡眠スコアを保存
 
-        // 計算式を変更
-        let baseTime = 8 * 60 + 30; // 基準時間 (8時間30分) を分単位で表現
-        let requiredTime = Math.round(requiredScore * baseTime / 100); // 四捨五入
+        let baseTime = 8 * 60 + 30; // 基準時間 (8時間30分)を分単位で表現
+        let requiredTime = Math.round(requiredScore * baseTime / 100); //
 
         // 結果を保存
         sleepTimes[count] = {
